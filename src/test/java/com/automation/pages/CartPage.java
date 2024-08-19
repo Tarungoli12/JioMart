@@ -14,6 +14,9 @@ public class CartPage extends BasePage{
     @FindBy(xpath = "//div[contains(@class,'emptycart-title')]")
     WebElement emptyCartText;
 
+    @FindBy(xpath = "//button[@name='placeorder'][1]")
+    WebElement placeOrderBtn;
+
     public String verifyProductSuccessfullyAddedInToCart() {
         return productNameInCart.getText();
     }
@@ -24,5 +27,9 @@ public class CartPage extends BasePage{
 
     public String verifyProductIsRemovedFromCart() {
         return emptyCartText.getText();
+    }
+
+    public void userClicksOnPlaceOrderButton() {
+        placeOrderBtn.click();
     }
 }

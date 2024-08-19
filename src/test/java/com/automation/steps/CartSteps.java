@@ -24,4 +24,9 @@ public class CartSteps {
     public void verifyProductIsRemovedFromTheCartSuccessfully() {
         Assert.assertEquals("Your Cart is Empty!",cartPage.verifyProductIsRemovedFromCart());
     }
+
+    @When("user clicks on place order button")
+    public void userClicksOnPlaceOrderButton() {
+        cartPage.userClicksOnPlaceOrderButton();
+    }
 }

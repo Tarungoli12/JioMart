@@ -8,6 +8,15 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends BasePage{
 
+    @FindBy(id = "btn_search_list")
+    WebElement hamburgerMenuBtn;
+
+    @FindBy(id = "rel_search_val")
+    WebElement itemListField;
+
+    @FindBy(xpath = "//button[text()=' Search All ']")
+    WebElement searchAllBtn;
+
     @FindBy(id = "sign_in_text")
     WebElement signInBtn;
 
@@ -28,6 +37,18 @@ public class HomePage extends BasePage{
     public void clickOnSignInButton() {
 
         signInBtn.click();
+    }
+
+    public void clickOnHamburgerMenu() {
+        hamburgerMenuBtn.click();
+    }
+
+    public void enterProductsInItemList(String items) {
+        itemListField.sendKeys(ConfigReader.getConfigValue(items));
+    }
+
+    public void clickOnSearchAllButton() {
+        searchAllBtn.click();
     }
 
     public void userSelectsProductsByCategoryAndSubCategory(String category, String subCategory, String specificProduct) {

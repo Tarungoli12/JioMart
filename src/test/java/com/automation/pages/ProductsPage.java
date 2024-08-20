@@ -3,7 +3,7 @@ package com.automation.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ProductPage extends BasePage{
+public class ProductsPage extends BasePage{
 
     @FindBy(xpath = "//div[@class='plp-card-details-tag']/following-sibling::div[contains(@class,'plp-card-details-name')]")
     WebElement firstProductName;

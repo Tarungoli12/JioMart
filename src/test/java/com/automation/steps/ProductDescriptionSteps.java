@@ -1,7 +1,6 @@
 package com.automation.steps;
 
 import com.automation.pages.ProductDescriptionPage;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -19,10 +18,5 @@ public class ProductDescriptionSteps {
     public void userClicksOnAddToCartButton() {
         productDescriptionPage.clickOnAddToCart();
 
-    }
-
-    @And("user clicks on cart icon button")
-    public void userClicksOnCartIconButton() {
-        productDescriptionPage.clickOnCartIconButton();
     }
 }

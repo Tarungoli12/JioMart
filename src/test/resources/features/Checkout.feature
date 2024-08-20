@@ -19,3 +19,4 @@ Feature: Checkout Functionality
     Then verify user is on order review page
     When user enters valid address
     And clicks on make payment button
+    Then verify user is on payment options page

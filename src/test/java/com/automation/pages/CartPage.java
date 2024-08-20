@@ -8,25 +8,11 @@ public class CartPage extends BasePage{
     @FindBy(xpath = "//div[@class='product-details']//div[contains(@class,'product-name')]")
     WebElement productNameInCart;
 
-    @FindBy(xpath = "//jds-button[@icon='IcMinus']/button")
-    WebElement removeButton;
-
-    @FindBy(xpath = "//div[contains(@class,'emptycart-title')]")
-    WebElement emptyCartText;
-
     @FindBy(xpath = "//button[@name='placeorder'][1]")
     WebElement placeOrderBtn;
 
     public String verifyProductSuccessfullyAddedInToCart() {
         return productNameInCart.getText();
-    }
-
-    public void userClicksOnRemoveButton() {
-        jsClick(removeButton);
-    }
-
-    public String verifyProductIsRemovedFromCart() {
-        return emptyCartText.getText();
     }
 
     public void userClicksOnPlaceOrderButton() {

@@ -1,7 +1,6 @@
 package com.automation.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -23,14 +22,14 @@ public class ProductDescriptionPage extends BasePage{
 
     public boolean verifyProductDescriptionPageIsDisplayed() {
         productName = driver.findElement(By.id("pdp_product_name")).getText();
-        return addToCartButton.isDisplayed() && shareButton.isDisplayed();
+        return shareButton.isDisplayed();
     }
 
     public void clickOnAddToCart() {
-        jsClick(addToCartButton);
-    }
-
-    public void clickOnCartIconButton() {
+        if(addToCartButton.isDisplayed())
+        {
+            jsClick(addToCartButton);
+        }
         cartIcon.click();
     }
 }

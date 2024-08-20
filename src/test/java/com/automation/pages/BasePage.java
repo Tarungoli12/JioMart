@@ -8,15 +8,14 @@ import org.openqa.selenium.support.PageFactory;
 
 public class BasePage {
     WebDriver driver;
-    JavascriptExecutor js ;
-
+    JavascriptExecutor js;
     public BasePage(){
         this.driver = DriverManager.getDriver();
-        js = (JavascriptExecutor)driver;
         PageFactory.initElements(driver,this);
     }
 
-    public  void jsClick(WebElement element){
+    public void jsClick(WebElement element){
+        js = (JavascriptExecutor)driver;
         js.executeScript("arguments[0].click();",element);
     }
 

@@ -22,5 +22,6 @@ public class OrderReviewSteps {
 
     @And("clicks on make payment button")
     public void clicksOnMakePaymentButton() {
+        orderReviewPage.clickOnMakePaymentButton();
     }
 }

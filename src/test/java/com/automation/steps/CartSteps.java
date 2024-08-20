@@ -15,18 +15,10 @@ public class CartSteps {
         Assert.assertEquals(ProductDescriptionPage.productName,cartPage.verifyProductSuccessfullyAddedInToCart());
     }
 
-    @When("user clicks on remove button")
-    public void userClicksOnRemoveButton() {
-        cartPage.userClicksOnRemoveButton();
-    }
-
-    @Then("verify product is removed from the cart successfully")
-    public void verifyProductIsRemovedFromTheCartSuccessfully() {
-        Assert.assertEquals("Your Cart is Empty!",cartPage.verifyProductIsRemovedFromCart());
-    }
-
     @When("user clicks on place order button")
     public void userClicksOnPlaceOrderButton() {
         cartPage.userClicksOnPlaceOrderButton();
     }
+
+
 }

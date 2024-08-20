@@ -26,4 +26,16 @@ public class HomeSteps {
     }
 
 
+
+
+    @When("user selects category type {string} and sub-category type {string} and specific-type {string}")
+    public void userSelectsCategoryTypeAndSubCategoryTypeAndSpecificType(String category, String subCategory, String specificProduct) {
+        homePage.userSelectsProductsByCategoryAndSubCategory(category, subCategory, specificProduct);
+    }
+
+    @Then("verify specific-product type {string} of products are displayed")
+    public void verifySpecificProductTypeOfProductsAreDisplayed(String specificProductType) {
+        System.out.println(specificProductType);
+        Assert.assertEquals(specificProductType, homePage.verifySpecificProductTypeOfProductsAreDisplayed());
+    }
 }

@@ -1,5 +1,6 @@
 package com.automation.pages;
 
+import com.automation.utils.ConfigReader;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,7 +28,7 @@ public class UserHomePage extends BasePage{
     }
 
     public void userSearchForProduct(String productName) {
-        searchBar.sendKeys(productName);
+        searchBar.sendKeys(ConfigReader.getConfigValue(productName));
         searchBar.sendKeys(Keys.ENTER);
     }
 }

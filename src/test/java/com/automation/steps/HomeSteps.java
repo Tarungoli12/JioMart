@@ -1,6 +1,7 @@
 package com.automation.steps;
 
 import com.automation.pages.HomePage;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -25,7 +26,20 @@ public class HomeSteps {
         homePage.clickOnSignInButton();
     }
 
+    @When("user clicks on hamburger menu")
+    public void userClicksOnHamburgerMenu() {
+        homePage.clickOnHamburgerMenu();
+    }
 
+    @And("enters product names separated by commas {string}")
+    public void entersProductNamesSeparatedByCommas(String items) {
+        homePage.enterProductsInItemList(items);
+    }
+
+    @And("clicks on search all button")
+    public void clicksOnSearchAllButton() {
+        homePage.clickOnSearchAllButton();
+    }
 
 
     @When("user selects category type {string} and sub-category type {string} and specific-type {string}")

@@ -47,4 +47,24 @@ public class ProductsSteps {
     public void verifyOutOfStockProductsAreDisplayed() {
         Assert.assertTrue(productsPage.verifyOutOfStockProductsAreDisplayed());
     }
+
+    @When("user scrolls down and clicks on brand filter")
+    public void userScrollsDownAndClicksOnBrandFilter() {
+        productsPage.userScrollsDownAndClicksOnBrandFilter();
+    }
+
+    @Then("verify different brands are displayed")
+    public void verifyDifferentBrandsAreDisplayed() {
+        Assert.assertTrue(productsPage.verifyDifferentBrandsAreDisplayed());
+    }
+
+    @When("user selects brand {string}")
+    public void userSelectsBrand(String brandName) throws InterruptedException {
+        productsPage.userSelectsBrand(brandName);
+    }
+
+    @Then("verify all products displayed are from the selected brand {string}")
+    public void verifyAllProductsDisplayedAreFromTheSelectedBrand(String brandName) throws InterruptedException {
+        Assert.assertTrue(productsPage.verifyAllProductsAreFromSameBrand(brandName));
+    }
 }

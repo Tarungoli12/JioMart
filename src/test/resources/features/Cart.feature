@@ -1,6 +1,6 @@
 Feature: Cart Functionality
 
-  Scenario: Verify user successfully added product into the cart
+  Background:
     Given user opens jio mart website
     Then verify user is on jio mart home page
     When user clicks on sign in button
@@ -9,11 +9,21 @@ Feature: Cart Functionality
     And click on continue button
     And user enters otp and click on verify button
     Then verify user is on user home page
-    When user search for "iPhone"
-    Then verify user is redirected to the "iPhone" products page
+
+  Scenario: Verify product is add into cart and logout
+    When user search for "Watch"
+    Then verify user is redirected to the "Watch" products page
     When user clicks on first product
     Then verify user is on product description page
     When user clicks on add to cart button
     Then verify product is added into cart successfully
-    When user clicks on remove button
-    Then verify product is removed from cart successfully
+    When user clicks on profile button
+    Then verify user is redirected to the profile section page
+    When user clicks on sign out button
+    Then verify user is on jio mart home page
+
+
+  Scenario: Verify product is added in the cart after login
+    When user clicks on cart icon
+    Then verify product is added into cart successfully
+

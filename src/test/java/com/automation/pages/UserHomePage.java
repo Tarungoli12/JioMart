@@ -17,7 +17,8 @@ public class UserHomePage extends BasePage{
     @FindBy(id = "user_initial")
     WebElement userNameText;
 
-    @FindBy(xpath = "//input[@placeholder='Search JioMart']")
+    //input[@placeholder='Search JioMart']
+    @FindBy(xpath = "//input[@class='aa-Input search_input']")
     WebElement searchBar;
 
     public boolean verifyUserHomePageDisplayed() {
@@ -28,7 +29,7 @@ public class UserHomePage extends BasePage{
     }
 
     public void userSearchForProduct(String productName) {
-        searchBar.sendKeys(ConfigReader.getConfigValue(productName));
+        searchBar.sendKeys(productName);
         searchBar.sendKeys(Keys.ENTER);
     }
 }

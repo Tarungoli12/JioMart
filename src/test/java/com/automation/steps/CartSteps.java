@@ -21,4 +21,23 @@ public class CartSteps {
     }
 
 
+    @When("user clicks on remove button")
+    public void userClicksOnRemoveButton() {
+        cartPage.userClicksOnRemoveButton();
+    }
+
+    @Then("verify product is removed from cart successfully")
+    public void verifyProductIsRemovedFromCartSuccessfully() {
+        Assert.assertEquals("Your Cart is Empty!",cartPage.verifyProductIsRemovedFromCart());
+    }
+
+    @When("user clicks on cart icon")
+    public void userClicksOnCartIcon() {
+        cartPage.clickOnCartIcon();
+    }
+
+    @Then("verify cart contains correct products count and cart value")
+    public void verifyCartContainsCorrectProductsCountAndCartValue() {
+        Assert.assertTrue(cartPage.validatingTheCartPriceIsMatchingWithCalculatedPrice());
+    }
 }

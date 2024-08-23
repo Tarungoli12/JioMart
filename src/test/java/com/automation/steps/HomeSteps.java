@@ -52,4 +52,10 @@ public class HomeSteps {
         System.out.println(specificProductType);
         Assert.assertEquals(specificProductType, homePage.verifySpecificProductTypeOfProductsAreDisplayed());
     }
+
+    @When("user clicks on profile button")
+    public void userClicksOnProfileButton() {
+        homePage.clickOnProfileButton();
+    }
+
 }

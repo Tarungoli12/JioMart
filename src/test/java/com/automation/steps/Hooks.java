@@ -22,6 +22,6 @@ public class Hooks {
             CucumberReportManager.addLog("Test case Failed");
             CucumberReportManager.attachScreenshot();
         }
-//        DriverManager.getDriver().quit();
+        DriverManager.getDriver().quit();
     }
 }

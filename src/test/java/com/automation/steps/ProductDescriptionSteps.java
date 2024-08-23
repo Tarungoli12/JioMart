@@ -17,7 +17,21 @@ public class ProductDescriptionSteps {
     @When("user clicks on add to cart button")
     public void userClicksOnAddToCartButton() {
         productDescriptionPage.clickOnAddToCart();
+    }
 
+    @When("user clicks on wish list icon")
+    public void userClicksOnWishListIcon() {
+        productDescriptionPage.clickOnWishListIcon();
+    }
+
+    @Then("verify product is added into wishlist successfully")
+    public void verifyProductIsAddedIntoWishlistSuccessfully() {
+        Assert.assertEquals(productDescriptionPage.verifyProductAddedToWishList(),"Added to Wishlist");
+    }
+
+    @When("user updates the location")
+    public void userUpdatesTheLocation() {
+        productDescriptionPage.userUpdatesTheLocation();
     }
 
     @When("user clicks on write a review")

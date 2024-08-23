@@ -34,6 +34,17 @@ public class ProductsPage extends BasePage{
     @FindBy(xpath = "//span[@class='out-of-stock-label']")
     List<WebElement> outOfStockProducts;
 
+    @FindBy(xpath = "//div[@id='brand_filter']//following-sibling::div//button")
+    WebElement brandFilterBtn;
+
+    @FindBy(xpath = "//div[text()='Select Brand']")
+    WebElement selectBrandTitle;
+
+    @FindBy(id = "filter_popup_search")
+    WebElement searchBrandInputField;
+
+    @FindBy(xpath = "//button[@id='filter_popup_apply']")
+    WebElement applyBtn;
 
     public String verifyMobileProductPageIsDisplayed() {
         return firstProductName.getText();
@@ -109,5 +120,35 @@ public class ProductsPage extends BasePage{
             }
         }
         return false;
+    }
+    public void userScrollsDownAndClicksOnBrandFilter() {
+        brandFilterBtn.click();
+    }
+
+    public boolean verifyDifferentBrandsAreDisplayed() {
+        return selectBrandTitle.isDisplayed();
+    }
+
+    public void userSelectsBrand(String brandName) throws InterruptedException {
+        searchBrandInputField.sendKeys(brandName);
+        Thread.sleep(1000);
+        WebElement brandCheckboxField = driver.findElement(By.xpath("//input[@value='" + brandName + "']"));
+        jsClick(brandCheckboxField);
+        Thread.sleep(1000);
+        applyBtn.click();
+    }
+
+    List<WebElement> productNames = new ArrayList<>();
+    boolean flag1;
+
+    public boolean verifyAllProductsAreFromSameBrand(String brandName) throws InterruptedException {
+        productNames = driver.findElements(By.xpath("//div[contains(@class,'plp-card-details-name')]"));
+        for(int i=0;i<productNames.size();i++){
+            Thread.sleep(1000);
+            String productName = driver.findElement(By.xpath("(//div[contains(@class,'plp-card-details-name')])[" + (i+1) + "]")).getText();
+            flag1 = productName.contains(brandName);
+            System.out.println(productName);
+        }
+        return flag1;
     }
 }

@@ -22,11 +22,17 @@ public class ProductsPage extends BasePage{
     @FindBy(xpath = "//div[@class='search-list-buttons']/a")
     List<WebElement> searchedProductNames;
 
-    @FindBy(xpath = "//div[@class='plp-card-details-tag']/following-sibling::div[contains(@class,'plp-card-details-name')]")
+    @FindBy(xpath = "(//div[contains(@class,'plp-card-details')]/div[contains(@class,'plp-card-details-name')])[1]")
     WebElement firstProductName;
 
     @FindBy(xpath = "//li[@class='ais-InfiniteHits-item jm-col-4 jm-mt-base'][1]/a")
     WebElement firstProductLink;
+
+    @FindBy(xpath = "//span[text()='Include Out of stock']")
+    WebElement outOfStockBtn;
+
+    @FindBy(xpath = "//span[@class='out-of-stock-label']")
+    List<WebElement> outOfStockProducts;
 
 
     public String verifyMobileProductPageIsDisplayed() {
@@ -34,7 +40,7 @@ public class ProductsPage extends BasePage{
     }
 
     public void userClicksOnFirstProduct() {
-        firstProductLink.click();
+        jsClick(firstProductLink);
     }
 
     List<Double> nonFilterPrices;
@@ -58,23 +64,50 @@ public class ProductsPage extends BasePage{
                 s.replace("₹", "").replace(",", "")).map(Double::parseDouble).toList());
     }
 
+    boolean flag;
     public boolean validateSearchedProducts() {
         int k = 0;
-        int j = 0;
         String[] names = ConfigReader.getConfigValue("search.value").split(",");
-        for(int i=1;i<=searchedProductNames.size();i++){
+        for(int i=0;i<searchedProductNames.size();i++){
             searchedProductNames.get(i).click();
             try {
-                Thread.sleep(1000);
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            if(searchedProductNames.get(i).getText().contains(names[j])){
+            if(searchedProductNames.get(0).getText().equals(names[i])){
                 k++;
             }
-            j++;
+            String firstProdName = driver.findElement(By.xpath("(//div[@class='plp-card-details-container']/div)[1]")).getText();
+            if(firstProdName.contains(names[i])){
+                flag = true;
+            }
         }
-        return k == names.length;
+        System.out.println(k);
+        return k == names.length && flag;
     }
 
+    public void userSpecifiesRange(String price) {
+        String pointerXpath = "//h2[text()='Price']/../following-sibling::div//div[@aria-label='Maximum Filter Handle']";
+        int priceMove = Integer.parseInt(price);
+        scrollFilterSelector(pointerXpath,priceMove);
+    }
+
+    public void clickOnOutOfStockButton() {
+        outOfStockBtn.click();
+    }
+
+    public boolean verifyOutOfStockProductsAreDisplayed() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        for (WebElement prod : outOfStockProducts){
+            if(prod.getText().contains("Out of Stock")){
+                return true;
+            }
+        }
+        return false;
+    }
 }

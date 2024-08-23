@@ -11,7 +11,7 @@ public class ProductsSteps {
 
     @Then("verify user is redirected to the {string} products page")
     public void verifyUserIsRedirectedToTheProductsPage(String productName) {
-        Assert.assertTrue(productsPage.verifyMobileProductPageIsDisplayed().contains(ConfigReader.getConfigValue(productName)));
+        Assert.assertTrue(productsPage.verifyMobileProductPageIsDisplayed().contains(productName));
     }
 
     @When("user clicks on first product")
@@ -31,5 +31,20 @@ public class ProductsSteps {
     @When("user performs sorting {string}")
     public void userPerformsSorting(String sortType) throws InterruptedException {
         productsPage.userPerformSorting(sortType);
+    }
+
+    @When("user specifies price range {string}")
+    public void userSpecifiesPriceRange(String price) {
+        productsPage.userSpecifiesRange(price);
+    }
+
+    @When("user clicks on include out of stock button")
+    public void userClicksOnIncludeOutOfStockButton() {
+        productsPage.clickOnOutOfStockButton();
+    }
+
+    @Then("verify out of stock products are displayed")
+    public void verifyOutOfStockProductsAreDisplayed() {
+        Assert.assertTrue(productsPage.verifyOutOfStockProductsAreDisplayed());
     }
 }

@@ -15,3 +15,4 @@ Feature: Cart Functionality
     Then verify user is on product description page
     When user clicks on add to cart button
     Then verify product is added into cart successfully
+

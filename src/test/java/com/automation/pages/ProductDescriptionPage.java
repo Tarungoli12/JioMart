@@ -18,6 +18,13 @@ public class ProductDescriptionPage extends BasePage{
     @FindBy(id = "btn_minicart")
     WebElement cartIcon;
 
+    @FindBy(xpath = "//div[@class='feedback-service-review-form-block']/button")
+    WebElement reviewBtn;
+
+    @FindBy(xpath = "//div[contains(@class,'modal-title ')]")
+    WebElement rateAndReviewText;
+
+
     public static String productName;
 
     public boolean verifyProductDescriptionPageIsDisplayed() {
@@ -29,7 +36,17 @@ public class ProductDescriptionPage extends BasePage{
         if(addToCartButton.isDisplayed())
         {
             jsClick(addToCartButton);
+        }else {
+            jsClick(cartIcon);
         }
-        cartIcon.click();
+    }
+
+    public void clickOnWriteAReviewButton() {
+        reviewBtn.click();
+        reviewBtn.click();
+    }
+
+    public String verifyReviewRatingPopupIsDisplayed() {
+        return rateAndReviewText.getText();
     }
 }

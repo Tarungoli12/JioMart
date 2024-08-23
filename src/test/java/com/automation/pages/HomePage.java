@@ -26,6 +26,9 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//section[@class='jm-breadcrumbs breadcrumbs-container']//li[5]/a")
     WebElement specificProductTypeTitle;
 
+    @FindBy(xpath = "//a[@class='aflogin ng-star-inserted']")
+    WebElement profileBtn;
+
     public void openWebsite() {
         driver.get(ConfigReader.getConfigValue("base.url"));
     }
@@ -73,5 +76,9 @@ public class HomePage extends BasePage{
     public String verifySpecificProductTypeOfProductsAreDisplayed() {
         System.out.println(specificProductTypeTitle.getText());
         return specificProductTypeTitle.getText();
+    }
+
+    public void clickOnProfileButton() {
+        profileBtn.click();
     }
 }

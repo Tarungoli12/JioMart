@@ -19,4 +19,14 @@ public class ProductDescriptionSteps {
         productDescriptionPage.clickOnAddToCart();
 
     }
+
+    @When("user clicks on write a review")
+    public void userClicksOnWriteAReview(){
+        productDescriptionPage.clickOnWriteAReviewButton();
+    }
+
+    @Then("verify review rating popup is displayed")
+    public void verifyReviewRatingPopupIsDisplayed() {
+        Assert.assertEquals("Rate & Review",productDescriptionPage.verifyReviewRatingPopupIsDisplayed());
+    }
 }

@@ -12,6 +12,7 @@ Feature: Sorting Functionality
     When user performs sorting "<sort type>"
 
     Examples:
+
       | sort type          |
       | Price: Low to High |
       | Price: High to Low |

@@ -1,5 +1,6 @@
-package com.automation.pages;
+package com.automation.pages.web;
 
+import com.automation.pages.ui.RegisterPage;
 import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class RegisterPage extends BasePage{
+public class RegisterPageWeb extends BasePageWeb implements RegisterPage {
 
     @FindBy(xpath = "//input[@name='firstname']")
     WebElement firstNameInputField;

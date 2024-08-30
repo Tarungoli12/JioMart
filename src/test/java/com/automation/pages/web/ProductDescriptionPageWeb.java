@@ -1,11 +1,12 @@
-package com.automation.pages;
+package com.automation.pages.web;
 
+import com.automation.pages.ui.ProductDescriptionPage;
 import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ProductDescriptionPage extends BasePage{
+public class ProductDescriptionPageWeb extends BasePageWeb implements ProductDescriptionPage {
 
     @FindBy(xpath = "//button[text()='Add to Cart']")
     WebElement addToCartButton;

@@ -1,11 +1,12 @@
-package com.automation.pages;
+package com.automation.pages.web;
 
+import com.automation.pages.ui.CartPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class CartPage extends BasePage {
+public class CartPageWeb extends BasePageWeb implements CartPage {
 
     @FindBy(xpath = "//div[@class='product-details']//div[contains(@class,'product-name')]")
     WebElement productNameInCart;

@@ -1,11 +1,12 @@
-package com.automation.pages;
+package com.automation.pages.web;
 
+import com.automation.pages.ui.OrderReviewPage;
 import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class OrderReviewPage extends BasePage {
+public class OrderReviewPageWeb extends BasePageWeb implements OrderReviewPage {
 
     @FindBy(xpath = "//div[@class='j-text sp--m pd--vertical j-text-heading-xs ng-star-inserted']")
     WebElement orderReviewTitle;

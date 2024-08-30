@@ -1,9 +1,10 @@
-package com.automation.pages;
+package com.automation.pages.web;
 
+import com.automation.pages.ui.AccountPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AccountPage extends BasePage{
+public class AccountPageWeb extends BasePageWeb implements AccountPage {
 
     @FindBy(xpath = "//h5[text()='My Account']")
     WebElement myAccountText;

@@ -1,6 +1,6 @@
-package com.automation.pages;
+package com.automation.pages.web;
 
-import com.automation.utils.ConfigReader;
+import com.automation.pages.ui.UserHomePage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,15 +9,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class UserHomePage extends BasePage{
+public class UserHomePageWeb extends BasePageWeb implements UserHomePage {
 
     @FindBy(xpath = "//button[text()='Agree']")
     WebElement agreeButton;
 
     @FindBy(id = "user_initial")
     WebElement userNameText;
-
-    //input[@placeholder='Search JioMart']
+    
     @FindBy(xpath = "//input[@class='aa-Input search_input']")
     WebElement searchBar;
 
@@ -32,4 +31,5 @@ public class UserHomePage extends BasePage{
         searchBar.sendKeys(productName);
         searchBar.sendKeys(Keys.ENTER);
     }
+
 }

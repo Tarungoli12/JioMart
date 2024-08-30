@@ -1,5 +1,6 @@
-package com.automation.pages;
+package com.automation.pages.web;
 
+import com.automation.pages.ui.SignInPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class SignInPage extends BasePage{
+public class SignInPageWeb extends BasePageWeb implements SignInPage {
 
     @FindBy(xpath = "//div[@class='j-text j-text-heading-xs']")
     WebElement signInText;
@@ -22,7 +23,6 @@ public class SignInPage extends BasePage{
     WebElement continueButton;
 
 
-
     public boolean verifySignInPageIsDisplayed() {
         return signInText.isDisplayed() && phoneNumberFiled.isDisplayed();
     }
@@ -30,6 +30,7 @@ public class SignInPage extends BasePage{
     public void enterMobileNumber(String mobileNumber) {
         phoneNumberFiled.sendKeys(mobileNumber);
     }
+
 
     public void clickOnContinueButton() {
         continueButton.click();
@@ -46,7 +47,6 @@ public class SignInPage extends BasePage{
 //        }
 //        wait.until(ExpectedConditions.attributeContains(verifyButton,"disabled","false"));
         wait.until(ExpectedConditions.visibilityOf(verifyButton));
-
         jsClick(verifyButton);
     }
 }

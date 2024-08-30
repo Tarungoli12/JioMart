@@ -1,20 +1,20 @@
-package com.automation.pages;
+package com.automation.pages.web;
 
+import com.automation.pages.ui.BasePage;
 import com.automation.utils.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.support.PageFactory;
 
-public class BasePage {
+public class BasePageWeb implements BasePage {
     WebDriver driver;
     JavascriptExecutor js;
     Actions actions;
 
-    public BasePage() {
+    public BasePageWeb() {
         this.driver = DriverManager.getDriver();
         js = (JavascriptExecutor) driver;
         actions = new Actions(driver);

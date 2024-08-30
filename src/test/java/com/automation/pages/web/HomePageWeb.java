@@ -1,12 +1,13 @@
-package com.automation.pages;
+package com.automation.pages.web;
 
+import com.automation.pages.ui.HomePage;
 import com.automation.utils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-public class HomePage extends BasePage{
+public class HomePageWeb extends BasePageWeb implements HomePage {
 
     @FindBy(id = "btn_search_list")
     WebElement hamburgerMenuBtn;
@@ -38,7 +39,6 @@ public class HomePage extends BasePage{
     }
 
     public void clickOnSignInButton() {
-
         signInBtn.click();
     }
 
@@ -66,8 +66,7 @@ public class HomePage extends BasePage{
         try {
             WebElement specificProductEle = driver.findElement(By.xpath("//a[text()='" + subCategory + "']/following-sibling::div//a[text()='" + specificProduct + "']"));
             actions.moveToElement(specificProductEle).pause(2000).click(specificProductEle).build().perform();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             WebElement specificProductEle = driver.findElement(By.xpath("(//a[text()='" + subCategory + "']/following-sibling::div//a[text()='" + specificProduct + "'])[2]"));
             actions.moveToElement(specificProductEle).pause(2000).click(specificProductEle).build().perform();
         }

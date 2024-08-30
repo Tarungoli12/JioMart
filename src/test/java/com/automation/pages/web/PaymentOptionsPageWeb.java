@@ -1,9 +1,10 @@
-package com.automation.pages;
+package com.automation.pages.web;
 
+import com.automation.pages.ui.PaymentOptionsPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class PaymentOptionsPage extends BasePage{
+public class PaymentOptionsPageWeb extends BasePageWeb implements PaymentOptionsPage {
 
     @FindBy(xpath = "//div[text()='UPI']")
     WebElement upiBtn;

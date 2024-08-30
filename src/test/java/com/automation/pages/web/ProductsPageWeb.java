@@ -1,17 +1,17 @@
-package com.automation.pages;
+package com.automation.pages.web;
 
+import com.automation.pages.ui.ProductsPage;
 import com.automation.utils.ConfigReader;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ProductsPage extends BasePage{
-
+public class ProductsPageWeb extends BasePageWeb implements ProductsPage {
 
     @FindBy(id = "current_sort")
     WebElement sortButton;
@@ -57,10 +57,14 @@ public class ProductsPage extends BasePage{
     List<Double> nonFilterPrices;
     List<Double> filterPrices;
 
-    public void userPerformSorting(String sortingType) throws InterruptedException {
+    public void userPerformSorting(String sortingType){
         sortButton.click();
         driver.findElement(By.xpath("//div[contains(text(),'"+ sortingType +"')]")).click();
-        Thread.sleep(2000);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         nonFilterPrices = giveInDouble(driver.findElements(By.xpath("//div[@class='plp-card-details-price']/span[contains(@class,'heading')]")));
         filterPrices = new ArrayList<>(nonFilterPrices);
         Collections.sort(filterPrices);
@@ -129,22 +133,34 @@ public class ProductsPage extends BasePage{
         return selectBrandTitle.isDisplayed();
     }
 
-    public void userSelectsBrand(String brandName) throws InterruptedException {
+    public void userSelectsBrand(String brandName){
         searchBrandInputField.sendKeys(brandName);
-        Thread.sleep(1000);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         WebElement brandCheckboxField = driver.findElement(By.xpath("//input[@value='" + brandName + "']"));
         jsClick(brandCheckboxField);
-        Thread.sleep(1000);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         applyBtn.click();
     }
 
     List<WebElement> productNames = new ArrayList<>();
     boolean flag1;
 
-    public boolean verifyAllProductsAreFromSameBrand(String brandName) throws InterruptedException {
+    public boolean verifyAllProductsAreFromSameBrand(String brandName) {
         productNames = driver.findElements(By.xpath("//div[contains(@class,'plp-card-details-name')]"));
         for(int i=0;i<productNames.size();i++){
-            Thread.sleep(1000);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             String productName = driver.findElement(By.xpath("(//div[contains(@class,'plp-card-details-name')])[" + (i+1) + "]")).getText();
             flag1 = productName.contains(brandName);
             System.out.println(productName);

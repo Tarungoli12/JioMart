@@ -1,13 +1,24 @@
 package com.automation.steps;
 
-import com.automation.pages.ProductDescriptionPage;
+import com.automation.pages.mobile.ProductDescriptionPageMobile;
+import com.automation.pages.ui.ProductDescriptionPage;
+import com.automation.pages.web.ProductDescriptionPageWeb;
+import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 public class ProductDescriptionSteps {
 
-    ProductDescriptionPage productDescriptionPage = new ProductDescriptionPage();
+    ProductDescriptionPage productDescriptionPage ;
+    public ProductDescriptionSteps(){
+        String environment = ConfigReader.getConfigValue("application.type");
+        if(environment.equals("mobile")) {
+            productDescriptionPage= new ProductDescriptionPageMobile();
+        }else{
+            productDescriptionPage = new ProductDescriptionPageWeb();
+        }
+    }
 
     @Then("verify user is on product description page")
     public void verifyUserIsOnProductDescriptionPage() {

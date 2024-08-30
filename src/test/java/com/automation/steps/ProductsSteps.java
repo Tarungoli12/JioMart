@@ -1,13 +1,23 @@
 package com.automation.steps;
 
-import com.automation.pages.ProductsPage;
+import com.automation.pages.mobile.ProductsPageMobile;
+import com.automation.pages.ui.ProductsPage;
+import com.automation.pages.web.ProductsPageWeb;
 import com.automation.utils.ConfigReader;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 public class ProductsSteps {
-    ProductsPage productsPage = new ProductsPage();
+    ProductsPage productsPage;
+    public ProductsSteps(){
+        String environment = ConfigReader.getConfigValue("application.type");
+        if(environment.equals("mobile")) {
+            productsPage= new ProductsPageMobile();
+        }else{
+            productsPage = new ProductsPageWeb();
+        }
+    }
 
     @Then("verify user is redirected to the {string} products page")
     public void verifyUserIsRedirectedToTheProductsPage(String productName) {
@@ -29,7 +39,7 @@ public class ProductsSteps {
     }
 
     @When("user performs sorting {string}")
-    public void userPerformsSorting(String sortType) throws InterruptedException {
+    public void userPerformsSorting(String sortType){
         productsPage.userPerformSorting(sortType);
     }
 
@@ -59,12 +69,12 @@ public class ProductsSteps {
     }
 
     @When("user selects brand {string}")
-    public void userSelectsBrand(String brandName) throws InterruptedException {
+    public void userSelectsBrand(String brandName){
         productsPage.userSelectsBrand(brandName);
     }
 
     @Then("verify all products displayed are from the selected brand {string}")
-    public void verifyAllProductsDisplayedAreFromTheSelectedBrand(String brandName) throws InterruptedException {
+    public void verifyAllProductsDisplayedAreFromTheSelectedBrand(String brandName){
         Assert.assertTrue(productsPage.verifyAllProductsAreFromSameBrand(brandName));
     }
 }

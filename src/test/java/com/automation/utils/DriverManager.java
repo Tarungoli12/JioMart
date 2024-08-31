@@ -1,6 +1,6 @@
 package com.automation.utils;
 
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -12,14 +12,14 @@ public class DriverManager {
 
     public static void createDriver(){
         if(ConfigReader.getConfigValue("application.type").equals("mobile")) {
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("platformName", ConfigReader.getConfigValue("platform.name"));
-            capabilities.setCapability("deviceName", ConfigReader.getConfigValue("device.name"));
-            capabilities.setCapability("automationName", ConfigReader.getConfigValue("automation.name"));
-            capabilities.setCapability("app", ConfigReader.getConfigValue("jioMart.app.path"));
-            capabilities.setCapability("appActivity", ConfigReader.getConfigValue("jioMart.app.activity"));
-            capabilities.setCapability("appPackage", ConfigReader.getConfigValue("jioMart.app.package"));
-            driver = new AndroidDriver(capabilities);
+            DesiredCapabilities caps = new DesiredCapabilities();
+            caps.setCapability("platformName", ConfigReader.getConfigValue("platform.name"));
+            caps.setCapability("appium:app", ConfigReader.getConfigValue("app.path"));
+            caps.setCapability("deviceName", ConfigReader.getConfigValue("running.in").equals("my phone")? ConfigReader.getConfigValue("device.name.mobile") : ConfigReader.getConfigValue("device.name"));
+            caps.setCapability("appium:automationName", ConfigReader.getConfigValue("automation.name"));
+            caps.setCapability("appActivity", ConfigReader.getConfigValue("app.activity"));
+            caps.setCapability("appPackage", ConfigReader.getConfigValue("app.package"));
+            driver = new AppiumDriver(caps);
         }else{
             driver = new ChromeDriver();
             driver.manage().window().maximize();

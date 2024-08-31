@@ -1,6 +1,7 @@
 package com.automation.pages.mobile;
 
 import com.automation.pages.ui.HomePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -17,7 +18,6 @@ public class HomePageMobile extends BasePageMobile implements HomePage {
 
     @FindBy(xpath = "//android.view.View[@content-desc='Cart']/../following-sibling::android.view.View")
     WebElement profileIcon;
-
 
     @Override
     public void openWebsite() {
@@ -58,7 +58,11 @@ public class HomePageMobile extends BasePageMobile implements HomePage {
 
     @Override
     public void userSelectsProductsByCategoryAndSubCategory(String category, String subCategory, String specificProduct) {
-
+        WebElement categoryBtn = driver.findElement(By.xpath(String.format("//android.widget.TextView[@text='%s']",category)));
+        waitForElementToBeVisible(categoryBtn);
+        while (!categoryBtn.isDisplayed()){
+            //scrollOrSwipe();
+        }
     }
 
     @Override
